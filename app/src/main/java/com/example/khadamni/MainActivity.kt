@@ -1,46 +1,42 @@
 package com.example.khadamni
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import android.widget.Toolbar
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.navigation.NavigationView
+import android.os.Handler
+import com.example.khadamni.Controller.Login
+
 
 class MainActivity : AppCompatActivity() {
-    lateinit var toggle: ActionBarDrawerToggle
+
+    lateinit var mSharedPref : SharedPreferences
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        mSharedPref = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE);
+        supportActionBar?.hide();
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val drawerLayout: DrawerLayout=findViewById(R.id.drawerLayout);
-        val drawerNavView: NavigationView = findViewById(R.id.nav_view)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        setSupportActionBar(findViewById(R.id.toolBar));
-        toggle =  ActionBarDrawerToggle(this,drawerLayout,findViewById(R.id.toolBar),R.string.open,R.string.close);
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-        drawerNavView.setNavigationItemSelectedListener {
-            when (it.itemId)
-            {
-                R.id.search -> {
-                    Toast.makeText(applicationContext, "clicked on search",Toast.LENGTH_SHORT).show()
-                    Intent(this,Register::class.java).also {
-                        startActivity(it)
-                    }
-                }
-                R.id.profile -> {
-                    Toast.makeText(applicationContext, "clicked on profile",Toast.LENGTH_SHORT).show()
-                    Intent(this,UserProfile::class.java).also {
-                        startActivity(it)
-                    }
+        lateinit var handler: Handler
 
-                }
 
+
+//splash screen 3s
+        handler= Handler()
+        handler.postDelayed({
+            if(mSharedPref.getBoolean("ISREMEMBRED",false)== false){
+                val intent= Intent(this, Login::class.java)
+                startActivity(intent)
+            }else{
+                val intent= Intent(this, HomeActivity::class.java)
+                startActivity(intent)
             }
-            true
-        }
+            finish()
 
+        },3000)
     }
+
 }
