@@ -10,6 +10,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.khadamni.Controller.Login
+import com.example.khadamni.Controller.jobs.JobsFragment
+import com.example.khadamni.Controller.messages.MessagesFragment
+import com.example.khadamni.Controller.services.ServicesFragment
+import com.example.khadamni.Controller.worker.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -26,6 +30,7 @@ class HomeActivity : AppCompatActivity() {
         //aaaaa
 
         val homeFrag = HomeFragment()
+        val jobsFrag = JobsFragment()
         val profilFrag = ProfilFragment()
         val messageFrag = MessagesFragment()
         val serviceFrag = ServicesFragment()
@@ -42,6 +47,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.mimessage -> setCurrentFragment(messageFrag)
                 R.id.miprofil -> setCurrentFragment(profilFrag)
                 R.id.miservice -> setCurrentFragment(serviceFrag)
+                R.id.mijob -> setCurrentFragment(jobsFrag)
             }
             true
         }

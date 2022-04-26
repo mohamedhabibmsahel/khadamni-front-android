@@ -1,4 +1,5 @@
 package com.example.khadamni.Controller
+
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -13,17 +14,31 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import com.bumptech.glide.Glide
 import com.example.khadamni.HomeActivity
 import com.example.khadamni.R
 import com.example.khadamni.Register
 import com.example.khadamni.models.*
 import com.example.khadamni.services.ApiUser
+import com.facebook.*
+import com.facebook.appevents.AppEventsLogger
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.marcoscg.dialogsheet.DialogSheet
+import com.squareup.picasso.Picasso
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
+import java.util.*
 
 
 class Login : AppCompatActivity() {
@@ -33,12 +48,24 @@ class Login : AppCompatActivity() {
     lateinit var username: TextView
     lateinit var password: TextView
     lateinit var button: Button
+    lateinit var GoogleButton: Button
+    lateinit var FacebookButton: Button
     lateinit var buttonSingUp: TextView
     lateinit var forgotpass: TextView
     lateinit var mSharedPref: SharedPreferences
+    lateinit var gso : GoogleSignInOptions
+    lateinit var gsc :GoogleSignInClient
+    lateinit var callbackManager : CallbackManager
+    var isLoggedIn : Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+
+        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
+        gsc = GoogleSignIn.getClient(this,gso)
+        GoogleButton = findViewById(R.id.btnGoogle)
+        FacebookButton = findViewById(R.id.btnFacebook)
         forgotpass = findViewById(R.id.forgotPassword)
         username= findViewById(R.id.inputEmail);
         password =findViewById(R.id.inputPassword);
@@ -47,17 +74,56 @@ class Login : AppCompatActivity() {
         mSharedPref = getSharedPreferences("SHARED_PREF",Context.MODE_PRIVATE);
         //isRemembred = mSharedPref.getBoolean("CHECKBOX",false)
 
-       /* if (email.isEmpty()) {
-            username.error = "Email required"
-            username.requestFocus()
-            return
+        /* if (email.isEmpty()) {
+             username.error = "Email required"
+             username.requestFocus()
+             return
+         }
+
+         if (mypassword.isEmpty()) {
+             password.error = "Password required"
+             password.requestFocus()
+             return
+         }*/
+        GoogleButton.setOnClickListener {
+            signIn()
+            val  acct = GoogleSignIn.getLastSignedInAccount(this)
+            if(acct!=null){
+                println("Nom"+acct.displayName)
+                println("Email"+acct.email)
+                println("Imaage"+acct.photoUrl)
+            }
         }
 
-        if (mypassword.isEmpty()) {
-            password.error = "Password required"
-            password.requestFocus()
-            return
-        }*/
+        FacebookButton.setOnClickListener {
+
+            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email","public_profile"));
+        }
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
+        callbackManager = CallbackManager.Factory.create();
+        val accessToken = AccessToken.getCurrentAccessToken()
+        val isLoggedIn = accessToken != null && !accessToken.isExpired
+        LoginManager.getInstance().registerCallback(callbackManager,
+            object : FacebookCallback<LoginResult?> {
+                override fun onSuccess(loginResult: LoginResult?) {
+                    val graphRequest = GraphRequest.newMeRequest (loginResult?.accessToken){`object`, response->
+                        getFacebookData(`object`)}
+                    val parameters = Bundle()
+                    parameters.putString("fields","id,email,birthday,friends, gender, name,picture.type(large)")
+                    graphRequest.parameters = parameters
+                    graphRequest.executeAsync()
+                }
+
+
+                override fun onCancel() {
+                    println("erreur cancel")
+                }
+
+                override fun onError(exception: FacebookException) {
+                    println("erreur erreur")
+                }
+            })
         button.setOnClickListener {
             var myUser = User()
 
@@ -125,13 +191,13 @@ class Login : AppCompatActivity() {
 
 
 
-   buttonSingUp.setOnClickListener {
-       /* Intent(this, Register::class.java).also {
-            startActivity(it)*/
+        buttonSingUp.setOnClickListener {
+            /* Intent(this, Register::class.java).also {
+                 startActivity(it)*/
             val intent= Intent(this, Register::class.java)
             startActivity(intent)
 
-    }
+        }
 
         //Confirm Password Dialog
 
@@ -174,10 +240,10 @@ class Login : AppCompatActivity() {
             verification.emailAddress
             verification.password = customPassword!!.text.toString()
             /*verification.user?.emailAddress = customEmail*/
-            println("ena zok om email !! : " + customEmail)
-            println("ena zok om verification !! : " + verification)
-            println("ena zok om code !! : " + mycode)
-            println("ena zok om pass !! : " + customPassword!!.text.toString())
+            println("email !! : " + customEmail)
+            println("verification !! : " + verification)
+            println("code !! : " + mycode)
+            println("pass !! : " + customPassword!!.text.toString())
             val apiuser = ApiUser.create().resetPassword(
                 customEmail,
                 mycode,
@@ -493,5 +559,33 @@ class Login : AppCompatActivity() {
         }
         forgotpass.setOnClickListener { dialogSheet.show() }
     }
+    //SignIn method
+    fun signIn(){
+        var signInIntent : Intent  = gsc.getSignInIntent()
+        startActivityForResult(signInIntent,1000)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 1000){
+            val task= GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+    fun handleSignInResult(completedTask: Task<GoogleSignInAccount>){
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+        }catch (e: ApiException){
+            Toast.makeText(applicationContext, "Google ",Toast.LENGTH_SHORT).show()
+        }
 
     }
+    fun getFacebookData(obj: JSONObject?){
+        println(obj?.getString("name"))
+        println(obj?.getString("email"))
+        val profilePic = obj!!.getJSONObject("picture").getJSONObject("data").getString("url");
+        println(profilePic.toString())
+    }
+}

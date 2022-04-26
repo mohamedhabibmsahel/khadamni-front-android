@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <item
         android:id="@+id/mihome"
         android:icon="@drawable/ic_home"
         android:title="Home"></item>
     <item
-        android:id="@+id/mimessage"
-        android:icon="@drawable/ic_message"
-        android:title="Message"></item>
+        android:id="@+id/mijob"
+        android:icon="@drawable/ic_baseline_design_services_24"
+        android:title="Jobs"></item>
+
     <item
         android:id="@+id/miprofil"
         android:icon="@drawable/ic_person"
@@ -19,5 +19,9 @@
         android:icon="@drawable/ic_service"
         android:title="Service"></item>
 
+    <item
+        android:id="@+id/mimessage"
+        android:icon="@drawable/ic_message"
+        android:title="Message"></item>
 
 </menu>
