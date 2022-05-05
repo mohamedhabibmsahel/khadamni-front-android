@@ -2,7 +2,6 @@ package com.example.khadamni
 
 import android.content.SharedPreferences
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.khadamni.Controller.Login
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.OnCompleteListener
@@ -49,10 +47,10 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
                 .setMessage("Are you sure you want to Logout ?")
                 .setPositiveButton("Yes"){ dialogInterface, which ->
 
-                        mSharedPref.edit().clear().apply()
-                        signOut()
-                        val intent= Intent(activity,Login::class.java)
-                        startActivity(intent)
+                    mSharedPref.edit().clear().apply()
+                    signOut()
+                    val intent= Intent(activity,Login::class.java)
+                    startActivity(intent)
 
 
                 }.setNegativeButton("No"){dialogInterface, which ->

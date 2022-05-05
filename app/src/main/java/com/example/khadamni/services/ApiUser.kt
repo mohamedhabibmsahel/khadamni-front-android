@@ -23,19 +23,17 @@ interface ApiUser {
     /* if needed query params @Query("key") key: String*/
     @POST("forgotPassword")
     fun sendResetCode(
-        @Body emailAddress: UserReset
+        @Body email: UserReset
     ):Call<UserResetResponse>
 
 
-    @POST("resetPassword/{emailAddress}/{token}")
+    @POST("resetPassword")
     fun resetPassword(
-        @Path("emailAddress") emailAddress: String,
-        @Path("token") token:String,
-        @Body password: String,
-    ):Call<UserResetResponse>
+        @Body user: UserRequest,
+    ):Call<UserRequest>
 
     @GET("allusers")
-    fun getUsers(): Response<List<User>>
+    fun getUsers(): Call<UsersAndMessage>
 
     @POST("login")
     fun userLogin(

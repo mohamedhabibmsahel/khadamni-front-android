@@ -7,15 +7,15 @@
     android:paddingRight="16dp"
     android:paddingLeft="16dp"
     android:layout_marginBottom="-40dp">
-
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/juka" />
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/juka"
+        android:layout_centerVertical="true"
+        android:id="@+id/imageView"
+        />
 
     <TextView
         android:id="@+id/name"

@@ -74,29 +74,29 @@ class Login : AppCompatActivity() {
         mSharedPref = getSharedPreferences("SHARED_PREF",Context.MODE_PRIVATE);
         //isRemembred = mSharedPref.getBoolean("CHECKBOX",false)
 
-       /* if (email.isEmpty()) {
-            username.error = "Email required"
-            username.requestFocus()
-            return
-        }
+        /* if (email.isEmpty()) {
+             username.error = "Email required"
+             username.requestFocus()
+             return
+         }
 
-        if (mypassword.isEmpty()) {
-            password.error = "Password required"
-            password.requestFocus()
-            return
-        }*/
+         if (mypassword.isEmpty()) {
+             password.error = "Password required"
+             password.requestFocus()
+             return
+         }*/
         GoogleButton.setOnClickListener {
             signIn()
             val  acct = GoogleSignIn.getLastSignedInAccount(this)
-        if(acct!=null){
-            println("Nom"+acct.displayName)
-            println("Email"+acct.email)
-            println("Imaage"+acct.photoUrl)
+            if(acct!=null){
+                println("Nom"+acct.displayName)
+                println("Email"+acct.email)
+                println("Imaage"+acct.photoUrl)
             }
         }
 
         FacebookButton.setOnClickListener {
-            
+
             LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email","public_profile"));
         }
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -113,7 +113,7 @@ class Login : AppCompatActivity() {
                     parameters.putString("fields","id,email,birthday,friends, gender, name,picture.type(large)")
                     graphRequest.parameters = parameters
                     graphRequest.executeAsync()
-                    }
+                }
 
 
                 override fun onCancel() {
@@ -191,13 +191,13 @@ class Login : AppCompatActivity() {
 
 
 
-   buttonSingUp.setOnClickListener {
-       /* Intent(this, Register::class.java).also {
-            startActivity(it)*/
+        buttonSingUp.setOnClickListener {
+            /* Intent(this, Register::class.java).also {
+                 startActivity(it)*/
             val intent= Intent(this, Register::class.java)
             startActivity(intent)
 
-    }
+        }
 
         //Confirm Password Dialog
 
@@ -237,7 +237,7 @@ class Login : AppCompatActivity() {
 
             val verification = UserRequest()
             verification.token = mycode
-            verification.emailAddress
+            verification.email=customEmail
             verification.password = customPassword!!.text.toString()
             /*verification.user?.emailAddress = customEmail*/
             println("email !! : " + customEmail)
@@ -245,14 +245,12 @@ class Login : AppCompatActivity() {
             println("code !! : " + mycode)
             println("pass !! : " + customPassword!!.text.toString())
             val apiuser = ApiUser.create().resetPassword(
-                customEmail,
-                mycode,
-                customPassword!!.text.toString()
+                verification
             )
-            apiuser.enqueue(object : Callback<UserResetResponse> {
+            apiuser.enqueue(object : Callback<UserRequest> {
                 override fun onResponse(
-                    call: Call<UserResetResponse>,
-                    response: Response<UserResetResponse>
+                    call: Call<UserRequest>,
+                    response: Response<UserRequest>
                 ) {
                     if (response.isSuccessful) {
 
@@ -286,7 +284,7 @@ class Login : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<UserResetResponse>, t: Throwable) {
+                override fun onFailure(call: Call<UserRequest>, t: Throwable) {
                     Toast.makeText(applicationContext, "erreur server", Toast.LENGTH_LONG).show()
                 }
 
@@ -342,7 +340,7 @@ class Login : AppCompatActivity() {
 
         sendcode?.setOnClickListener {
             var userReset = UserReset()
-            userReset.emailAddress = customEditTextemail?.text.toString()
+            userReset.email = customEditTextemail?.text.toString()
             customEmail = customEditTextemail?.text.toString()
             val apiuser = ApiUser.create().sendResetCode(userReset)
 
@@ -571,8 +569,8 @@ class Login : AppCompatActivity() {
             val task= GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
         }
-            callbackManager.onActivityResult(requestCode, resultCode, data)
-            super.onActivityResult(requestCode, resultCode, data)
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
     }
     fun handleSignInResult(completedTask: Task<GoogleSignInAccount>){
         try {
