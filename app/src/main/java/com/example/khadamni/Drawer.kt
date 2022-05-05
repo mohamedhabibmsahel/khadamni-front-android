@@ -3,9 +3,9 @@ package com.example.khadamni
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class Login : AppCompatActivity() {
+class Drawer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_drawer)
     }
 }
