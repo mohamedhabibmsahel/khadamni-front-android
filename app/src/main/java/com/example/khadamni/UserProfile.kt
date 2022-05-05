@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.drawerlayout.widget.DrawerLayout
 
@@ -26,6 +27,10 @@ class UserProfile : AppCompatActivity() {
         phone.setText("+216 "+mSharedPref.getString("PHONE","000000"));
         /*val urlimage: TextView =findViewById(R.id.idUrlImg);
         urlimage.setText("+216 "+mSharedPref.getString("URLIMAGE",""));*/
+        val drawerIcon: ImageView= findViewById(R.id.idDrawerIcon)
+        drawerIcon.setOnClickListener {
+
+        }
 
 
 

@@ -25,15 +25,16 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:padding="1dp"
-                    android:layout_alignParentEnd="true"
+                    android:id="@+id/idDrawerIcon"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentStart="true"
                     android:layout_marginStart="5dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="41dp"
-                    android:src="@drawable/ic_shopping"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"/>
+                    android:layout_marginBottom="5dp"
+                    android:padding="1dp"
+                    android:src="@drawable/orders" />
                 <ImageView
                     android:padding="1dp"
                     android:layout_alignParentEnd="true"
