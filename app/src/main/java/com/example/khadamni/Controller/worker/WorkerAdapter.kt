@@ -18,15 +18,17 @@ class WorkerAdapter (val workerList: MutableList<User> ) : RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: WorkerViewModel, position: Int) {
-        val usrName = workerList[position].nom
+        val usrName = workerList[position].nom+" "+workerList[position].prenom
         val usrRole = workerList[position].job
-        val usrlocation = workerList[position].address
+        val usrNumber = workerList[position].phone
         val usrImage = workerList[position].urlImg
+        val usrLocation = workerList[position].address
 
 
         holder.userName.text = usrName
         holder.userRole.text = usrRole
-        holder.userLocation.text = usrlocation
+        holder.userNumber.text = usrNumber
+        holder.userLocation.text = usrLocation
         Picasso.get().load(usrImage).into( holder.userPicture)
 
 

@@ -34,6 +34,7 @@ class HomeActivity : AppCompatActivity() {
         val profilFrag = ProfilFragment()
         val messageFrag = MessagesFragment()
         val serviceFrag = ServicesFragment()
+        setCurrentFragment(homeFrag)
 
 
 
