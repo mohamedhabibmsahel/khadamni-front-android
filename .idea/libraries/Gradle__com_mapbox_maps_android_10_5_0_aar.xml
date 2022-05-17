@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.mapbox.maps:android:10.5.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/69186009bf90e9305a0896070773b985/transformed/jetified-android-10.5.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/69186009bf90e9305a0896070773b985/transformed/jetified-android-10.5.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/69186009bf90e9305a0896070773b985/transformed/jetified-android-10.5.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.maps/android/10.5.0/127e1e8a29c0bd29dc28b0741b7be7eac06fdd45/android-10.5.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.maps/android/10.5.0/ae5d61ee88d9fb0b7621e210941ad1eb0442735f/android-10.5.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

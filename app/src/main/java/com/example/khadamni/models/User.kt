@@ -27,12 +27,17 @@ data class UserAndToken(
     var token: String? = null
 
 )
+data class UsersAndMessage(
+    var users: MutableList<User>?= null,
+    var message: String? = null
+
+)
 data class UserRequest(
     var token: String?=null,
     var msg: String?=null,
     var succes: String?=null,
     var response: String?=null,
-    var emailAddress: String?=null,
+    var email: String?=null,
     var password: String?=null,
 )
 data class UserResetResponse(
@@ -43,6 +48,6 @@ data class UserResetResponse(
     var user : User? = null,
 )
 data class UserReset(
-    var emailAddress: String?=null,
+    var email: String?=null,
 
     )

@@ -7,19 +7,23 @@
     android:orientation="vertical"
     android:background="@drawable/background"
     android:layout_gravity="center">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="674dp"
         android:orientation="vertical">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <LinearLayout
-                android:orientation="horizontal"
-                android:padding="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+                android:layout_height="?attr/actionBarSize"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -51,47 +55,56 @@
 
 
             </LinearLayout>
+
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:text="My"
                     android:textColor="@color/white"
                     android:textSize="30sp"
-                    android:textStyle="normal"
-                    android:layout_marginStart="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:textStyle="normal" />
+
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:text="Profile"
                     android:textColor="@color/white"
                     android:textSize="33sp"
-                    android:textStyle="bold"
-                    android:layout_marginStart="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
+
         <include
-            android:layout_gravity="center"
+            layout="@layout/item_image"
             android:layout_width="match_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
             android:layout_height="wrap_content"
-            layout="@layout/item_image"/>
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <include layout="@layout/item_add"/>
-                <include layout="@layout/item_info"/>
-                <include layout="@layout/item_email"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_add" />
+
+                <include layout="@layout/item_info" />
+
+                <include layout="@layout/item_email" />
 
 
             </LinearLayout>

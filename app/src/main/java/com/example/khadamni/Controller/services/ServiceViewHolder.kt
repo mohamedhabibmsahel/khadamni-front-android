@@ -8,12 +8,12 @@ import com.example.khadamni.R
 
 class ServiceViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    val userPicService : ImageView
+
     val userFromNameService : TextView
     val serviceTitle : TextView
 
     init {
-        userPicService = itemView.findViewById(R.id.FromImgService)
+
         userFromNameService = itemView.findViewById(R.id.userFromNameService)
         serviceTitle = itemView.findViewById(R.id.serviceTitle)
     }

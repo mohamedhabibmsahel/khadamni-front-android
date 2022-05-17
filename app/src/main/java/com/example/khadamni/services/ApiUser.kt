@@ -23,19 +23,17 @@ interface ApiUser {
     /* if needed query params @Query("key") key: String*/
     @POST("forgotPassword")
     fun sendResetCode(
-        @Body emailAddress: UserReset
+        @Body email: UserReset
     ):Call<UserResetResponse>
 
 
-    @POST("resetPassword/{emailAddress}/{token}")
+    @POST("resetPassword")
     fun resetPassword(
-        @Path("emailAddress") emailAddress: String,
-        @Path("token") token:String,
-        @Body password: String,
-    ):Call<UserResetResponse>
+        @Body user: UserRequest,
+    ):Call<UserRequest>
 
     @GET("allusers")
-    fun getUsers(): Response<List<User>>
+    fun getUsers(): Call<UsersAndMessage>
 
     @POST("login")
     fun userLogin(
@@ -48,8 +46,31 @@ interface ApiUser {
         @Part profilePicture: MultipartBody.Part
     ) : Call<userSignUpResponse>
 
+    @GET("getuser/{id}")
+    fun getuserbyid( @Path("id") id : String): Call<User>
 
 
 /*    @POST("/users")
     fun createUser(@Body user: User): Response<CreateUserResponse>*/
+
+    // API Jobs
+
+    @POST("createjob")
+    fun addJob(@Body info: RequestBody): Call<Job>
+
+
+    @GET("alljobs")
+    fun AllJobs(): Call<MutableList<Job>>
+
+    @GET("getjob/{id}")
+    fun getuserbyemail( @Path("id") id : String): Call<Job>
+
+    @PUT("updatejob/{id}")
+    fun updateJob(@Body info: RequestBody,@Path("id") id : String): Call<Job>
+
+
+    @DELETE("deletejob/{id}")
+    fun deleteJob(@Path("id") id : String): Call<Job>
+
+
 }

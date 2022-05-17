@@ -34,10 +34,11 @@ class HomeActivity : AppCompatActivity() {
         val profilFrag = ProfilFragment()
         val messageFrag = MessagesFragment()
         val serviceFrag = ServicesFragment()
-
-
-
         setCurrentFragment(homeFrag)
+
+
+
+       // setCurrentFragment(homeFrag)
 
         bottomNav = findViewById(R.id.bottomNavigationView)
 

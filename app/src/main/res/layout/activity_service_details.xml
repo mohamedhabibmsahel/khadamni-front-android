@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="20dp"
-    android:background="@drawable/background"
+    android:background="@drawable/bb"
     tools:context=".Controller.jobs.JobDetailsActivity">
 
 
@@ -47,14 +47,7 @@
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/UserRole"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text=" Date : 25/04/2022"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="18dp" />
+
 
                 <TextView
                     android:id="@+id/UserLocation"
@@ -77,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Description"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_marginLeft="10dp"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,6 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginTop="40dp"
+        android:textColor="@color/white"
         android:text="this is a a description for the job containing the location ! when to do the job and for how much to do it "
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,7 +101,7 @@
         android:layout_marginStart="8dp"
         android:text="Price"
         android:layout_marginLeft="10dp"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -116,12 +110,15 @@
 
 
     <TextView
+        android:id="@+id/pricetext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textColor="@color/white"
         android:text="1800dt"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        android:textSize="35dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/paymentBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +127,7 @@
     </TextView>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/paymentBtn"
         android:layout_width="wrap_content"
         android:layout_marginBottom="60dp"
         android:layout_height="wrap_content"

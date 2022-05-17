@@ -237,7 +237,7 @@ class Login : AppCompatActivity() {
 
             val verification = UserRequest()
             verification.token = mycode
-            verification.emailAddress
+            verification.email=customEmail
             verification.password = customPassword!!.text.toString()
             /*verification.user?.emailAddress = customEmail*/
             println("email !! : " + customEmail)
@@ -245,14 +245,12 @@ class Login : AppCompatActivity() {
             println("code !! : " + mycode)
             println("pass !! : " + customPassword!!.text.toString())
             val apiuser = ApiUser.create().resetPassword(
-                customEmail,
-                mycode,
-                customPassword!!.text.toString()
+                verification
             )
-            apiuser.enqueue(object : Callback<UserResetResponse> {
+            apiuser.enqueue(object : Callback<UserRequest> {
                 override fun onResponse(
-                    call: Call<UserResetResponse>,
-                    response: Response<UserResetResponse>
+                    call: Call<UserRequest>,
+                    response: Response<UserRequest>
                 ) {
                     if (response.isSuccessful) {
 
@@ -286,7 +284,7 @@ class Login : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<UserResetResponse>, t: Throwable) {
+                override fun onFailure(call: Call<UserRequest>, t: Throwable) {
                     Toast.makeText(applicationContext, "erreur server", Toast.LENGTH_LONG).show()
                 }
 
@@ -342,7 +340,7 @@ class Login : AppCompatActivity() {
 
         sendcode?.setOnClickListener {
             var userReset = UserReset()
-            userReset.emailAddress = customEditTextemail?.text.toString()
+            userReset.email = customEditTextemail?.text.toString()
             customEmail = customEditTextemail?.text.toString()
             val apiuser = ApiUser.create().sendResetCode(userReset)
 
