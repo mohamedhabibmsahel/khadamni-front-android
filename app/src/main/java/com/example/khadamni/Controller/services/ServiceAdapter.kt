@@ -10,7 +10,7 @@ import com.example.khadamni.R
 import com.example.khadamni.models.Job
 import com.example.khadamni.models.Service
 
-class ServiceAdapter (val servicesList: MutableList<Service>) : RecyclerView.Adapter<ServiceViewHolder>()  {
+class ServiceAdapter (val jobsList: MutableList<Job>) : RecyclerView.Adapter<ServiceViewHolder>()  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -20,23 +20,30 @@ class ServiceAdapter (val servicesList: MutableList<Service>) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: ServiceViewHolder, position: Int) {
-        val usrName = servicesList[position].from
-        val description = servicesList[position].Description
 
-        holder.userPicService.setImageResource(R.drawable.juka)
-        holder.serviceTitle.text = description
-        holder.userFromNameService.text = usrName
+
+        val price = jobsList[position].Price
+        val description = jobsList[position].Description
+
+        val idto = jobsList[position].to
+        val idfrom = jobsList[position].from
+        val _id = jobsList[position]._id
+        holder.serviceTitle.text = "Job price : " + price.toString()
+        holder.userFromNameService.text = "Job description : " + description
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, ServiceDetailsActivity::class.java)
             intent.apply {
-                putExtra("NAME", usrName)
-                putExtra("DESCRIPTION", description)
+                putExtra("_id", _id)
+                putExtra("idfrom", idfrom)
+                putExtra("to", idto)
+                putExtra("description", description)
+                putExtra("Price", price.toString())
             }
             holder.itemView.context.startActivity(intent)
         }
 
     }
 
-    override fun getItemCount() = servicesList.size
+    override fun getItemCount() = jobsList.size
 }

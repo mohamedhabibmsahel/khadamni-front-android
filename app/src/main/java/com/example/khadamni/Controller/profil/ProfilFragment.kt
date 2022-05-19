@@ -21,6 +21,7 @@ import com.squareup.picasso.Picasso
 
 class ProfilFragment : Fragment(R.layout.fragment_profil) {
     lateinit var mLogOut: ImageView
+    lateinit var mSettings: ImageView
     lateinit var mSharedPref : SharedPreferences;
     lateinit var gso : GoogleSignInOptions
     lateinit var gsc : GoogleSignInClient
@@ -30,7 +31,7 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
         val email: TextView =rootView.findViewById(R.id.idEmail);
         email.setText(mSharedPref.getString("EMAIL",""));
         val nom: TextView =rootView.findViewById(R.id.idfullname);
-        nom.setText(mSharedPref.getString("NOM","No name")+mSharedPref.getString("PRENOM","No prenom"));
+        nom.setText(mSharedPref.getString("NOM","")+mSharedPref.getString("PRENOM","No prenom"));
         val address: TextView =rootView.findViewById(R.id.idAddress);
         address.setText(mSharedPref.getString("ADDRESS",""));
         val job: TextView =rootView.findViewById(R.id.idjob);
@@ -41,6 +42,7 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
         val urlimage: ImageView =rootView.findViewById(R.id.idUrlImg);
         Picasso.get().load(mSharedPref.getString("URLIMG","")).into(urlimage)
         mLogOut = rootView.findViewById<ImageView?>(R.id.idLogOut)
+        mSettings = rootView.findViewById<ImageView?>(R.id.settings)
         mLogOut.setOnClickListener {
             AlertDialog.Builder(activity)
                 .setTitle("LogOut")
@@ -56,6 +58,10 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
                 }.setNegativeButton("No"){dialogInterface, which ->
                     dialogInterface.dismiss()
                 }.create().show()
+        }
+        mSettings.setOnClickListener {
+            val intent= Intent(activity,EditProfileActivity::class.java)
+            startActivity(intent)
         }
         return rootView
     }

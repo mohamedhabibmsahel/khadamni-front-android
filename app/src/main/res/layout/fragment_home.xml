@@ -8,6 +8,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerWorkers"
         android:layout_width="match_parent"
-        android:layout_height="576dp" />
+        android:layout_height="652dp" />
 
 </FrameLayout>

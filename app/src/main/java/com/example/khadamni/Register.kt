@@ -1,21 +1,30 @@
 package com.example.khadamni
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.example.khadamni.Controller.Login
+import com.example.khadamni.models.User
+import com.example.khadamni.services.ApiUser
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Register : AppCompatActivity() {
     private var selectedImageUri: Uri? = null
     var imagePicker: ImageView? = null
+    var minputUrlimg: ImageView? = null
+
     private lateinit var fab: FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -30,21 +39,10 @@ class Register : AppCompatActivity() {
         var minputPhone = findViewById<EditText>(R.id.EditText_show_phone)
         var minputAdress= findViewById<EditText>(R.id.EditText_show_address)
         var minputJob= findViewById<EditText>(R.id.EditText_show_job)
-        var minputUrlimg= findViewById<ImageView>(R.id.imageView_profile_dp)
-
-
-
-
-
-
-
-
-
-
+        minputUrlimg= findViewById<ImageView>(R.id.imageView_profile_dp)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
-        minputUrlimg.setOnClickListener(View.OnClickListener {
+        minputUrlimg!!.setOnClickListener(View.OnClickListener {
             ImagePicker.with(this)
                 .crop()                  //Crop image(Optional), Check Customization for more option
                 .compress(1024)          //Final image size will be less than 1 MB(Optional)
@@ -60,6 +58,7 @@ class Register : AppCompatActivity() {
             val phone = minputPhone.text.toString().trim()
             val address = minputAdress.text.toString().trim()
             val job = minputJob.text.toString().trim()
+
 
             if (firstname.isEmpty()) {
                 minputFirstname.error = "First name required"
@@ -101,32 +100,86 @@ class Register : AppCompatActivity() {
                 minputJob.requestFocus()
                 return@setOnClickListener
             }
-            /*if (selectedImageUri == null) {
-                layout_root.snackbar("Select an Image First")
-                return@setOnClickListener
-            }*/
 
-           /* val parcelFileDescriptor =
-                contentResolver.openFileDescriptor(selectedImageUri!!, "r", null) ?: return@setOnClickListener
-            login(
-                name,name1,
-                email,
-                password,
-                num
-            )
-            print(parcelFileDescriptor);*/
+            val parcelFileDescriptor =
+                contentResolver.openFileDescriptor(selectedImageUri!!, "r", null)
+                    ?: return@setOnClickListener
+            val stream = contentResolver.openInputStream(selectedImageUri!!)
+            val request =
+                stream?.let { RequestBody.create("image/png".toMediaTypeOrNull(), it.readBytes()) } // read all bytes using kotlin extension
+            val photos = request?.let {
+                MultipartBody.Part.createFormData(
+                    "urlImg",
+                    "file.png",
+                    it
+                )}
+            val data: LinkedHashMap<String, RequestBody> = LinkedHashMap()
+
+
+            data["email"] = RequestBody.create(MultipartBody.FORM, email)
+            data["password"] = RequestBody.create(MultipartBody.FORM, password)
+            data["nom"] = RequestBody.create(MultipartBody.FORM, lastname)
+            data["prenom"] = RequestBody.create(MultipartBody.FORM, firstname)
+            data["address"] = RequestBody.create(MultipartBody.FORM, address)
+            data["job"] = RequestBody.create(MultipartBody.FORM, job)
+            data["phone"] = RequestBody.create(MultipartBody.FORM, phone)
+
+                println(photos);
+            val apiUser = ApiUser.create().userSignUp(photos!!,data)
+            apiUser.enqueue(object : Callback<User> {
+                override fun onResponse(
+                    call: Call<User>,
+                    response: Response<User>
+                ) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@Register, "good", Toast.LENGTH_LONG).show()
+                        Log.i("Create User", response.body()!!.toString())
+
+
+
+
+                        val intent = Intent(this@Register, MainActivity::class.java)
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+
+
+
+
+                    } else {
+                        Toast.makeText(
+                            applicationContext,
+                            "Error creating User",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        Log.i("API RESPONSE", response.toString())
+                        Log.i("Claim response", response.body().toString())
+                    }
+                }
+
+                override fun onFailure(call: Call<User>, t: Throwable) {
+                    Toast.makeText(this@Register, "SERVER ERROR", Toast.LENGTH_LONG).show()
+                }
+
+
+            })
+        }
+
         buttonSingIn.setOnClickListener {
             val intent= Intent(this, Login::class.java)
             startActivity(intent)
 
         }
-         /*   m=findViewById(R.id.RegisterbtnSelectimage)
-        mImageView=findViewById(R.id.RegisterimageView)
-        mSelectImage.setOnClickListener {
-            pickImageGallery()
-        }*/
+
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK && requestCode == ImagePicker.REQUEST_CODE){
+            selectedImageUri = data?.data
+            minputUrlimg?.setImageURI(selectedImageUri)
+
         }
-
-
     }
 }
