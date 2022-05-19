@@ -3,7 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Controller.services.ServicesFragment">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:visibility="gone"
+        android:layout_margin="20dp"
+        android:id="@+id/animationNoreponse"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        app:lottie_rawRes="@raw/service" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerService"

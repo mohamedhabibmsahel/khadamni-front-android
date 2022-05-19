@@ -7,12 +7,24 @@
     android:background="@drawable/background"
     tools:context=".Controller.Login">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationNoreponse"
+        android:layout_width="151dp"
+        android:layout_height="162dp"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/inputEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_rawRes="@raw/login" />
 
     <TextView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text=""
         android:textColor="@color/colorWhite"
         android:textSize="36sp"
         android:textStyle="bold"

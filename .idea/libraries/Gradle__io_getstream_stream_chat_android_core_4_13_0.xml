@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: io.getstream:stream-chat-android-core:4.13.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.getstream/stream-chat-android-core/4.13.0/272d07718a99dbb0044d1f92e7b7f887cb043386/stream-chat-android-core-4.13.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.getstream/stream-chat-android-core/4.13.0/43256f31213bdeec3796bdf5234e70703715cae4/stream-chat-android-core-4.13.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.getstream/stream-chat-android-core/4.13.0/50a5b4af7ebde021df1a0f170be29f7bd7678501/stream-chat-android-core-4.13.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

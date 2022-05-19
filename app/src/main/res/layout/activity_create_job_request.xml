@@ -26,6 +26,7 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
       android:layout_margin="10dp"
         android:text="Enter job description"
         android:textColor="@color/colorPrimaryDark"
@@ -37,11 +38,13 @@
 
 
     <EditText
+
         android:id="@+id/descriptionEt"
         android:layout_width="match_parent"
+        android:paddingLeft="12dp"
         android:layout_height="190dp"
         android:layout_margin="10dp"
-        android:background="@color/white"
+        android:background="@drawable/custom_input"
         android:hint="enter you job description here"
         android:lines="6"
         android:textColor="@color/black"
@@ -70,8 +73,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="10dp"
-        android:background="@color/white"
+        android:background="@drawable/custom_input"
         android:hint="1400dt"
+        android:drawableStart="@drawable/ic_cash"
+        android:drawablePadding="12dp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,10 +88,12 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="140dp"
-        android:layout_height="80dp"
+        android:layout_width="241dp"
+        android:layout_height="68dp"
         android:layout_marginBottom="70dp"
+        android:background="@drawable/gradient_button"
         android:text="submit"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"

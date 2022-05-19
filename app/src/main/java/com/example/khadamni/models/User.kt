@@ -32,6 +32,11 @@ data class UsersAndMessage(
     var message: String? = null
 
 )
+data class UserAndMessage(
+    var user: User?= null,
+    var reponse: String? = null
+
+)
 data class UserRequest(
     var token: String?=null,
     var msg: String?=null,
@@ -51,3 +56,6 @@ data class UserReset(
     var email: String?=null,
 
     )
+data class userUpdateResponse(
+    var user : User? = null,
+)

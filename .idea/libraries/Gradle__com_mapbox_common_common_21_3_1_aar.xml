@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapbox.common:common:21.3.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f173ec5fc65a9de70fa141b4a69e76f1/transformed/jetified-common-21.3.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f173ec5fc65a9de70fa141b4a69e76f1/transformed/jetified-common-21.3.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f173ec5fc65a9de70fa141b4a69e76f1/transformed/jetified-common-21.3.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/01a57f3fe27ca0b1e08a8858f3ec3108/transformed/jetified-common-21.3.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/01a57f3fe27ca0b1e08a8858f3ec3108/transformed/jetified-common-21.3.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/01a57f3fe27ca0b1e08a8858f3ec3108/transformed/jetified-common-21.3.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.common/common/21.3.1/bc03b8696f9a143fa7ca6ec16e9bfe23b750ae54/common-21.3.1-javadoc.jar!/" />

@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -28,6 +31,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
 }
@@ -80,6 +87,12 @@ dependencies {
 
 
     implementation 'com.razorpay:checkout:1.6.4'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    // Stream Chat
+    implementation "io.getstream:stream-chat-android-ui-components:4.13.0"
+
+    implementation 'com.airbnb.android:lottie:3.7.0'
 
 
     implementation ('com.mapbox.maps:android:10.5.0'){

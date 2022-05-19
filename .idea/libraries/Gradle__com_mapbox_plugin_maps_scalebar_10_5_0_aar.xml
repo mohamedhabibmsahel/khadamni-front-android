@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapbox.plugin:maps-scalebar:10.5.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/005457dafe66a1b259c8159fc8c5bed6/transformed/jetified-maps-scalebar-10.5.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/005457dafe66a1b259c8159fc8c5bed6/transformed/jetified-maps-scalebar-10.5.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/005457dafe66a1b259c8159fc8c5bed6/transformed/jetified-maps-scalebar-10.5.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/adc796fafc0124d6a52b01920ef4ab28/transformed/jetified-maps-scalebar-10.5.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/adc796fafc0124d6a52b01920ef4ab28/transformed/jetified-maps-scalebar-10.5.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/adc796fafc0124d6a52b01920ef4ab28/transformed/jetified-maps-scalebar-10.5.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.plugin/maps-scalebar/10.5.0/c3b76d8d1633dec4cf38abdfc6fdd14a1521f450/maps-scalebar-10.5.0-javadoc.jar!/" />

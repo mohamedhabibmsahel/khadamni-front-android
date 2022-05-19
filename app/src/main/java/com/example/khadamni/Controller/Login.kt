@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.example.khadamni.HomeActivity
 import com.example.khadamni.R
@@ -56,12 +57,12 @@ class Login : AppCompatActivity() {
     lateinit var gso : GoogleSignInOptions
     lateinit var gsc :GoogleSignInClient
     lateinit var callbackManager : CallbackManager
+    lateinit var animationNoreponse: LottieAnimationView
+
     var isLoggedIn : Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-
         gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
         gsc = GoogleSignIn.getClient(this,gso)
         GoogleButton = findViewById(R.id.btnGoogle)
@@ -72,6 +73,10 @@ class Login : AppCompatActivity() {
         button = findViewById(R.id.btnlogin);
         buttonSingUp= findViewById(R.id.textViewSignUp);
         mSharedPref = getSharedPreferences("SHARED_PREF",Context.MODE_PRIVATE);
+        animationNoreponse = findViewById(R.id.animationNoreponse)
+        animationNoreponse.playAnimation()
+        animationNoreponse.loop(true)
+        animationNoreponse.visibility = View.VISIBLE
         //isRemembred = mSharedPref.getBoolean("CHECKBOX",false)
 
         /* if (email.isEmpty()) {
@@ -79,7 +84,6 @@ class Login : AppCompatActivity() {
              username.requestFocus()
              return
          }
-
          if (mypassword.isEmpty()) {
              password.error = "Password required"
              password.requestFocus()
@@ -89,9 +93,18 @@ class Login : AppCompatActivity() {
             signIn()
             val  acct = GoogleSignIn.getLastSignedInAccount(this)
             if(acct!=null){
-                println("Nom"+acct.displayName)
-                println("Email"+acct.email)
-                println("Imaage"+acct.photoUrl)
+
+                mSharedPref.edit().apply {
+                    putString("PRENOM", acct.displayName)
+                    putString("EMAIL", acct.email)
+                    //putString("URLIMG","https://scontent.ftun15-1.fna.fbcdn.net/v/t1.6435-9/51982056_2480244275336321_2897163948929318912_n.jpg?_nc_cat=108&ccb=1-6&_nc_sid=09cbfe&_nc_ohc=ehlv-BXZFoQAX8A5x0h&_nc_ht=scontent.ftun15-1.fna&oh=00_AT9MjIYeNsoQwGlNp6ATUr-ox6ivdmnFq2nxW9HBl_5YMA&oe=62ACBBA7")
+                    putString("URLIMG",acct.photoUrl.toString())
+                }.apply()
+                finish()
+                val intent = Intent(applicationContext, HomeActivity::class.java)
+                intent.flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
             }
         }
 
@@ -108,7 +121,98 @@ class Login : AppCompatActivity() {
             object : FacebookCallback<LoginResult?> {
                 override fun onSuccess(loginResult: LoginResult?) {
                     val graphRequest = GraphRequest.newMeRequest (loginResult?.accessToken){`object`, response->
-                        getFacebookData(`object`)}
+                        getFacebookData(`object`)
+                        val email = `object`.getString("email").toString()
+                        val nom = `object`.getString("name").toString()
+                        val profilePic = `object`.getJSONObject("picture").getJSONObject("data").getString("url");
+                        mSharedPref.edit().apply {
+                            putString("PRENOM", nom)
+                            putString("EMAIL", email)
+                            //putString("URLIMG","https://scontent.ftun15-1.fna.fbcdn.net/v/t1.6435-9/51982056_2480244275336321_2897163948929318912_n.jpg?_nc_cat=108&ccb=1-6&_nc_sid=09cbfe&_nc_ohc=ehlv-BXZFoQAX8A5x0h&_nc_ht=scontent.ftun15-1.fna&oh=00_AT9MjIYeNsoQwGlNp6ATUr-ox6ivdmnFq2nxW9HBl_5YMA&oe=62ACBBA7")
+                            putString("URLIMG",profilePic)
+                        }.apply()
+                        finish()
+                        val intent = Intent(applicationContext, HomeActivity::class.java)
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                        /*var myUser = User()
+                        myUser.email = email
+                        val apiUser = ApiUser.create().userLogin(myUser)
+                        apiUser.enqueue(object : Callback<UserAndToken> {
+                            override fun onResponse(
+                                call: Call<UserAndToken>,
+                                response: Response<UserAndToken>
+                            ) {
+                                if (response.isSuccessful) {
+                                    println("connexion avec facebook")
+                                    Toast.makeText(applicationContext, "good", Toast.LENGTH_LONG).show()
+                                    Log.i("Login User", response.body()!!.toString())
+                                    mSharedPref.edit().apply {
+                                        putString("ID", response.body()?.user?._id.toString())
+                                        putString("NOM", response.body()?.user?.nom.toString())
+                                        putString("PRENOM", response.body()?.user?.prenom.toString())
+                                        putString(
+                                            "EMAIL", email
+                                        )
+                                        putString("ADDRESS", response.body()?.user?.address.toString())
+                                        putString("JOB", response.body()?.user?.job.toString())
+                                        putString("PHONE", response.body()?.user?.phone.toString())
+                                        putString("URLIMG", response.body()?.user?.urlImg.toString())
+                                        putBoolean("ISREMEMBRED",true);
+                                    }.apply()
+                                    finish()
+                                    val intent = Intent(applicationContext, HomeActivity::class.java)
+                                    intent.flags =
+                                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    startActivity(intent)
+                                    println(
+                                        "My shaaaaaaaaaaaaaaaaaared prefs email ! " + mSharedPref.getString(
+                                            "EMAIL",
+                                            "hey"
+                                        )
+                                    );
+                                } else {
+                                    val data: LinkedHashMap<String, RequestBody> = LinkedHashMap()
+                                    data["email"] = RequestBody.create(MultipartBody.FORM, email)
+                                    data["nom"] = RequestBody.create(MultipartBody.FORM, nom)
+                                    val apiUser = ApiUser.create().userSignUp(null,data)
+                                    apiUser.enqueue(object : Callback<User> {
+                                        override fun onResponse(
+                                            call: Call<User>,
+                                            response: Response<User>
+                                        ) {
+                                            println("creation de compte avec facebook")
+                                            if (response.isSuccessful) {
+                                                Toast.makeText(this@Login, "good", Toast.LENGTH_LONG).show()
+                                                Log.i("Create User", response.body()!!.toString())
+                                                val intent = Intent(this@Login, MainActivity::class.java)
+                                                intent.flags =
+                                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                                startActivity(intent)
+                                            } else {
+                                                Toast.makeText(
+                                                    applicationContext,
+                                                    "Error creating User",
+                                                    Toast.LENGTH_LONG
+                                                ).show()
+                                                Log.i("API RESPONSE", response.toString())
+                                                Log.i("Claim response", response.body().toString())
+                                            }
+                                        }
+                                        override fun onFailure(call: Call<User>, t: Throwable) {
+                                            Toast.makeText(this@Login, "SERVER ERROR", Toast.LENGTH_LONG).show()
+                                        }
+                                    })
+                                }
+                            }
+                            override fun onFailure(call: Call<UserAndToken>, t: Throwable) {
+                                Toast.makeText(applicationContext, "SERVER ERROR", Toast.LENGTH_LONG).show()
+                            }
+                        })*/
+                    }
+
+
                     val parameters = Bundle()
                     parameters.putString("fields","id,email,birthday,friends, gender, name,picture.type(large)")
                     graphRequest.parameters = parameters
@@ -138,6 +242,7 @@ class Login : AppCompatActivity() {
                     if (response.isSuccessful) {
                         Toast.makeText(applicationContext, "good", Toast.LENGTH_LONG).show()
                         Log.i("Login User", response.body()!!.toString())
+                        println("aaaaaaaaaaa"+response.body()?.user)
                         mSharedPref.edit().apply {
                             putString("ID", response.body()?.user?._id.toString())
                             putString("NOM", response.body()?.user?.nom.toString())
@@ -581,9 +686,12 @@ class Login : AppCompatActivity() {
 
     }
     fun getFacebookData(obj: JSONObject?){
-        println(obj?.getString("name"))
-        println(obj?.getString("email"))
+        // println(obj?.getString("name"))
+        // println(obj?.getString("email"))
+        val email = obj?.getString("email").toString()
+        val nom = obj?.getString("name").toString()
         val profilePic = obj!!.getJSONObject("picture").getJSONObject("data").getString("url");
-        println(profilePic.toString())
+        //println(profilePic.toString())
+
     }
 }

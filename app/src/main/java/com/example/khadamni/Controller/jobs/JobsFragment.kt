@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.example.khadamni.R
 import com.example.khadamni.models.Job
 import com.example.khadamni.models.User
@@ -28,6 +29,9 @@ class JobsFragment : Fragment() {
 
     lateinit var recylcerJob: RecyclerView
     lateinit var recylcerJobAdapter: JobAdapter
+    lateinit var animationNoreponse: LottieAnimationView
+
+
     var JobListTrue: MutableList<Job> = ArrayList()
 
     lateinit var mSharedPref: SharedPreferences
@@ -41,6 +45,11 @@ class JobsFragment : Fragment() {
         recylcerJob = rootView.findViewById(R.id.recyclerJobs)
 
         JobListTrue.clear()
+        if(JobListTrue.isEmpty()){
+            animationNoreponse.playAnimation()
+            animationNoreponse.loop(true)
+            animationNoreponse.visibility = View.VISIBLE
+        }
         doADD()
 
         recylcerJobAdapter = JobAdapter(JobListTrue)
@@ -83,7 +92,7 @@ class JobsFragment : Fragment() {
                     recylcerJob.adapter = recylcerJobAdapter
 
                 } else {
-
+                    animationNoreponse.visibility = View.GONE
                 }
 
 

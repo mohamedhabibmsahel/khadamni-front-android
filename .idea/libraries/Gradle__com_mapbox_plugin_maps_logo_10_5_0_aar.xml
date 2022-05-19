@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapbox.plugin:maps-logo:10.5.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/78a015746efd04723c171522c0eb7eeb/transformed/jetified-maps-logo-10.5.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/78a015746efd04723c171522c0eb7eeb/transformed/jetified-maps-logo-10.5.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/78a015746efd04723c171522c0eb7eeb/transformed/jetified-maps-logo-10.5.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/32fed3c6f618689dba087d8ab145fdd9/transformed/jetified-maps-logo-10.5.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/32fed3c6f618689dba087d8ab145fdd9/transformed/jetified-maps-logo-10.5.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/32fed3c6f618689dba087d8ab145fdd9/transformed/jetified-maps-logo-10.5.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.plugin/maps-logo/10.5.0/9862ffdf2fd91ce4e4f8e607f34ad7db46ef193a/maps-logo-10.5.0-javadoc.jar!/" />

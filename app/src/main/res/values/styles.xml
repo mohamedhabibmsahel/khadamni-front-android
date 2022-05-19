@@ -6,6 +6,6 @@
         <item name="android:fontFamily">@font/nunito_semibold</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#fff</item>
-
     </style>
+
 </resources>

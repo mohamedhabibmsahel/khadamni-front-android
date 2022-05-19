@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapbox.maps:android:10.5.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/69186009bf90e9305a0896070773b985/transformed/jetified-android-10.5.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/69186009bf90e9305a0896070773b985/transformed/jetified-android-10.5.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/69186009bf90e9305a0896070773b985/transformed/jetified-android-10.5.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bd88dc757fb567ef17b2bdd89afe56df/transformed/jetified-android-10.5.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bd88dc757fb567ef17b2bdd89afe56df/transformed/jetified-android-10.5.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bd88dc757fb567ef17b2bdd89afe56df/transformed/jetified-android-10.5.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.maps/android/10.5.0/127e1e8a29c0bd29dc28b0741b7be7eac06fdd45/android-10.5.0-javadoc.jar!/" />

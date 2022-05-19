@@ -10,6 +10,13 @@
         android:layout_margin="5dp"
         android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="130dp"
+            android:src="@drawable/newjob">
+
+        </ImageView>
+
 
 
         <LinearLayout
@@ -23,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Name : from who "
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 

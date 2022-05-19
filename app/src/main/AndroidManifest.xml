@@ -18,6 +18,12 @@
         android:theme="@style/Theme.Khadamni"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivityChat"
+            android:exported="false" />
+        <activity
             android:name=".Controller.worker.CreateJobRequest"
             android:exported="false" />
         <activity

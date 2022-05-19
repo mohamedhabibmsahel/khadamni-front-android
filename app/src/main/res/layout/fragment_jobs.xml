@@ -3,11 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Controller.jobs.JobsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerJobs"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_margin="20dp"
+        android:id="@+id/animationNoreponse"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        app:lottie_rawRes="@raw/searchjob" />
 
 </FrameLayout>

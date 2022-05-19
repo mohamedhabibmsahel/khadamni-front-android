@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/design_services/baseline_design_services_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/attach_money/baseline_attach_money_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_baseline_design_services_24" />
-                            <entry key="sourceFile" value="C:\Users\Gouid\Desktop\ahawa\khadamni-front-android-main" />
+                            <entry key="opacityPercent" value="66" />
+                            <entry key="outputName" value="ic_cash" />
+                            <entry key="sourceFile" value="C:\Users\Gouid\Desktop\New folder (2)\khadamni-front-android-habib" />
                           </map>
                         </option>
                       </PersistentState>

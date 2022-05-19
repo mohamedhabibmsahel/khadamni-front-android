@@ -113,9 +113,10 @@
         android:id="@+id/pricetext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textColor="@color/white"
+        android:layout_margin="16dp"
+        android:textColor="@color/black"
         android:text="1800dt"
+        android:background="@drawable/custom_input"
         android:textSize="35dp"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/paymentBtn"
@@ -128,12 +129,14 @@
 
     <Button
         android:id="@+id/paymentBtn"
-        android:layout_width="wrap_content"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="185dp"
+        android:layout_height="71dp"
         android:layout_marginBottom="60dp"
-        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_button"
+        android:text="Payment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Payment"
         app:layout_constraintStart_toStartOf="parent" />
 
 

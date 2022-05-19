@@ -1,9 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapbox.extension:maps-localization:10.5.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/749c7177f8e3c9e92e332d0e0f20e91f/transformed/jetified-maps-localization-10.5.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/749c7177f8e3c9e92e332d0e0f20e91f/transformed/jetified-maps-localization-10.5.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/749c7177f8e3c9e92e332d0e0f20e91f/transformed/jetified-maps-localization-10.5.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d35d1844f1f8eca5ca684b93249b3796/transformed/jetified-maps-localization-10.5.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/d35d1844f1f8eca5ca684b93249b3796/transformed/jetified-maps-localization-10.5.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d35d1844f1f8eca5ca684b93249b3796/transformed/jetified-maps-localization-10.5.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.extension/maps-localization/10.5.0/56a0992961876854ffe29c214b8895a781653c09/maps-localization-10.5.0-javadoc.jar!/" />

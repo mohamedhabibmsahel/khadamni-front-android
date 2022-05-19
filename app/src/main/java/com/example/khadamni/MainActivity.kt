@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.example.khadamni.Controller.Login
+import io.getstream.chat.android.client.ChatClient
+import io.getstream.chat.android.client.logger.ChatLogLevel
+import io.getstream.chat.android.livedata.ChatDomain
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         lateinit var handler: Handler
 
+        val client =
+            ChatClient.Builder("x9dxvxe39a5z", this).logLevel(ChatLogLevel.ALL).build()
+        ChatDomain.Builder(client, this).build()
 
 
 //splash screen 3s

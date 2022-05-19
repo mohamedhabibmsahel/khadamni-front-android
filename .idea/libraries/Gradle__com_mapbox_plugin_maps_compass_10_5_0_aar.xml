@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapbox.plugin:maps-compass:10.5.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c9ceafa79ae1ac86f8d2df4ca54c63b9/transformed/jetified-maps-compass-10.5.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c9ceafa79ae1ac86f8d2df4ca54c63b9/transformed/jetified-maps-compass-10.5.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c9ceafa79ae1ac86f8d2df4ca54c63b9/transformed/jetified-maps-compass-10.5.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e0c11207c8f250fecbcafe54e1f09bb5/transformed/jetified-maps-compass-10.5.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e0c11207c8f250fecbcafe54e1f09bb5/transformed/jetified-maps-compass-10.5.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e0c11207c8f250fecbcafe54e1f09bb5/transformed/jetified-maps-compass-10.5.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.plugin/maps-compass/10.5.0/12180b302d793026f2eef4bf9f385bd29790e2d8/maps-compass-10.5.0-javadoc.jar!/" />

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.khadamni.Controller.Login
+import com.example.khadamni.Controller.jobs.JobDetailsActivity
 import com.example.khadamni.Controller.jobs.JobsFragment
 import com.example.khadamni.Controller.messages.MessagesFragment
 import com.example.khadamni.Controller.services.ServicesFragment
@@ -45,7 +46,11 @@ class HomeActivity : AppCompatActivity() {
         bottomNav.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.mihome -> setCurrentFragment(homeFrag)
-                R.id.mimessage -> setCurrentFragment(messageFrag)
+                R.id.mimessage -> {
+                    val intent = Intent(this, MainActivityChat::class.java)
+                    startActivity(intent)
+
+                }
                 R.id.miprofil -> setCurrentFragment(profilFrag)
                 R.id.miservice -> setCurrentFragment(serviceFrag)
                 R.id.mijob -> setCurrentFragment(jobsFrag)

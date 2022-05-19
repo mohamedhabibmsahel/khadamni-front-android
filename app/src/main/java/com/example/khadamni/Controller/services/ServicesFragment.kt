@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.example.khadamni.Controller.jobs.JobAdapter
 import com.example.khadamni.R
 import com.example.khadamni.models.Job
@@ -22,6 +23,8 @@ import retrofit2.Response
 class ServicesFragment : Fragment() {
     lateinit var recylcerService: RecyclerView
     lateinit var recylcerServiceAdapter: ServiceAdapter
+    lateinit var animationNoreponse: LottieAnimationView
+
     lateinit var mSharedPref: SharedPreferences
     var JobListTrue : MutableList<Job> = ArrayList()
     override fun onCreateView(
@@ -34,6 +37,11 @@ class ServicesFragment : Fragment() {
 
 
         JobListTrue.clear()
+        if(JobListTrue.isEmpty()){
+            animationNoreponse.playAnimation()
+            animationNoreponse.loop(true)
+            animationNoreponse.visibility = View.VISIBLE
+        }
         doADD()
 
 
@@ -76,6 +84,7 @@ class ServicesFragment : Fragment() {
 
 
                 }else{
+                    animationNoreponse.visibility = View.GONE
 
                 }
 
