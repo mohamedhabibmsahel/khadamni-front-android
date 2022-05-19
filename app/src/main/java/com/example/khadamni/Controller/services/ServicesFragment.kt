@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.example.khadamni.Controller.jobs.JobAdapter
 import com.example.khadamni.R
 import com.example.khadamni.models.Job
@@ -23,6 +24,7 @@ class ServicesFragment : Fragment() {
     lateinit var recylcerService: RecyclerView
     lateinit var recylcerServiceAdapter: ServiceAdapter
     lateinit var mSharedPref: SharedPreferences
+    lateinit var animationNoreponse: LottieAnimationView
     var JobListTrue : MutableList<Job> = ArrayList()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,16 +33,24 @@ class ServicesFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_services, container, false)
         mSharedPref =  this.requireActivity().getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE);
         recylcerService = rootView.findViewById(R.id.recyclerService)
+        animationNoreponse = rootView.findViewById(R.id.animationNoreponse)
 
 
         JobListTrue.clear()
+        if(JobListTrue.isEmpty()){
+            animationNoreponse.playAnimation()
+            animationNoreponse.loop(true)
+            animationNoreponse.visibility = View.VISIBLE
+        }
         doADD()
 
+            recylcerServiceAdapter = ServiceAdapter(JobListTrue)
+            recylcerService.adapter = recylcerServiceAdapter
+            recylcerService.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        recylcerServiceAdapter = ServiceAdapter(JobListTrue)
-        recylcerService.adapter = recylcerServiceAdapter
-        recylcerService.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+
 
         return rootView
     }
@@ -76,7 +86,7 @@ class ServicesFragment : Fragment() {
 
 
                 }else{
-
+                    animationNoreponse.visibility = View.GONE
                 }
 
 

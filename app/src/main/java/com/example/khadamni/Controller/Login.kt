@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.example.khadamni.HomeActivity
 import com.example.khadamni.MainActivity
@@ -60,6 +61,8 @@ class Login : AppCompatActivity() {
     lateinit var gso : GoogleSignInOptions
     lateinit var gsc :GoogleSignInClient
     lateinit var callbackManager : CallbackManager
+    lateinit var animationNoreponse: LottieAnimationView
+
     var isLoggedIn : Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +77,10 @@ class Login : AppCompatActivity() {
         button = findViewById(R.id.btnlogin);
         buttonSingUp= findViewById(R.id.textViewSignUp);
         mSharedPref = getSharedPreferences("SHARED_PREF",Context.MODE_PRIVATE);
+        animationNoreponse = findViewById(R.id.animationNoreponse)
+        animationNoreponse.playAnimation()
+        animationNoreponse.loop(true)
+        animationNoreponse.visibility = View.VISIBLE
         //isRemembred = mSharedPref.getBoolean("CHECKBOX",false)
 
         /* if (email.isEmpty()) {

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.example.khadamni.R
 import com.example.khadamni.models.Job
 import com.example.khadamni.models.User
@@ -32,6 +33,7 @@ class JobAdapter(val jobsList: MutableList<Job>) : RecyclerView.Adapter<JobViewH
         val _id = jobsList[position]._id
         holder.jobDescription.text = "Job description : " + description
         holder.userFromName.text = "Job price : " + price.toString()
+
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, JobDetailsActivity::class.java)
